@@ -1,0 +1,17 @@
+header {
+  text-align: center;
+  position: relative;
+  .logo {
+    font-size: 4rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+  .cart {
+    font-size: 1.8rem;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

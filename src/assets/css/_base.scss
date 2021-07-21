@@ -1,0 +1,39 @@
+*,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-weight: 500;
+  }
+}
+strong {
+  font-weight: 500;
+}
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 55%;
+  }
+}
+body {
+  font-family: "Oswald", sans-serif;
+  line-height: 1.6;
+  font-size: 1.6rem;
+}
+a {
+  text-decoration: none;
+}
+.container {
+  margin: 0 auto;
+  max-width: 93%;
+}

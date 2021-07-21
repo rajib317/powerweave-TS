@@ -1,0 +1,38 @@
+.btn {
+  border: none;
+  background: none;
+  font-family: inherit;
+  padding: 10px 25px;
+  font-size: 2rem;
+  text-transform: uppercase;
+  &:hover {
+    cursor: pointer;
+    transition: $transiton-time;
+  }
+  &:disabled {
+    background-color: grey;
+    color: black;
+    &:hover {
+      background-color: grey;
+      color: black;
+    }
+  }
+  &--md {
+    font-size: 1.8rem;
+    padding: 5px 15px;
+  }
+
+  &--primary {
+    background-color: $color-primary;
+    color: white;
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+}
+
+.btn-fluid {
+  @extend .btn;
+  width: 100%;
+}

@@ -1,0 +1,74 @@
+.footer {
+  background-color: black;
+  color: #606060;
+  padding: 30px;
+  font-size: 2rem;
+  text-transform: uppercase;
+  h3,
+  h4 {
+    color: white;
+    margin-bottom: 10px;
+  }
+  a {
+    color: #606060;
+  }
+  &--colophon {
+    @media screen and (min-width: $bp-small) {
+      display: flex;
+      justify-content: space-between;
+      gap: 4vw;
+    }
+    a {
+      display: block;
+      &:hover {
+        color: white;
+        transition: $transiton-time;
+      }
+    }
+    &--col {
+      flex-basis: 33%;
+      &:first-child {
+        flex-basis: 40%;
+      }
+      &--sub {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        flex: 1 0 0;
+      }
+    }
+    @media screen and (max-width: $bp-small) {
+      &--col + &--col {
+        margin-top: 20px;
+      }
+    }
+  }
+  &--credit {
+    text-transform: none;
+    font-size: 1.4rem;
+    padding-top: 20px;
+    margin-top: 20px;
+    text-align: center;
+    border-top: dotted 1px $color-grey-dark;
+    color: $color-grey-dark;
+  }
+  .btn {
+    &:hover {
+      background-color: $color-grey-dark1;
+    }
+  }
+}
+.form-dark {
+  input[type="text"] {
+    padding: 18px 20px;
+    background-color: $color-grey-dark;
+    color: $color-grey-light;
+    width: 100%;
+    border: none;
+    margin-bottom: 10px;
+    &:focus {
+      outline: solid 1px $color-grey-dark1;
+      transition: $transiton-time;
+    }
+  }
+}

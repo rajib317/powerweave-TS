@@ -1,0 +1,107 @@
+.product-showcase {
+  display: flex;
+  border-bottom: solid 1px $color-grey-light1;
+  @media only screen and (max-width: $bp-small) {
+    flex-flow: column;
+  }
+  gap: 20px;
+  padding: 20px 0 60px 0;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  &--thumbs-container {
+    flex: 0.2 0 0;
+    img {
+      background-color: $color-grey-light2;
+      border: solid 1px $color-grey-light1;
+      &:hover {
+        cursor: pointer;
+        border-color: $color-primary;
+        transition: $transiton-time;
+      }
+    }
+    @media only screen and (max-width: $bp-small) {
+      order: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      img {
+        max-width: 100px;
+      }
+    }
+  }
+  &--product-image {
+    flex: 1 0 0;
+    display: flex;
+    @media only screen and (max-width: $bp-small) {
+      order: -1;
+    }
+    img {
+      background-color: $color-grey-light2;
+      border: solid 1px $color-grey-light1;
+    }
+  }
+  .product-info {
+    flex: 1 0 0;
+    &--title {
+      font-size: 5rem;
+      text-transform: uppercase;
+      letter-spacing: $letter-spacing;
+    }
+    &--sku {
+      color: $color-primary;
+      font-size: 2rem;
+    }
+    &--desc {
+      font-family: sans-serif;
+      margin-top: 20px;
+    }
+    &--options {
+      &--label {
+        font-size: 2rem;
+        text-transform: uppercase;
+        margin-top: 20px;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        li {
+          margin-right: 5px;
+          border: solid 1px $color-grey-dark;
+          width: 40px;
+          line-height: 40px;
+          text-align: center;
+          font-family: sans-serif;
+          font-size: 1.8rem;
+          transition: $transiton-time;
+          &:hover,
+          &.active {
+            cursor: pointer;
+            background-color: $color-grey-dark;
+            color: white;
+            transition: $transiton-time;
+          }
+        }
+      }
+    }
+    &--purchase {
+      display: flex;
+      margin-top: 20px;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .price {
+        font-size: 3rem;
+        color: $color-primary;
+      }
+      .btn-container {
+        display: flex;
+        gap: 5px;
+      }
+    }
+  }
+}
