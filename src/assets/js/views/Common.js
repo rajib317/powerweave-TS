@@ -1,6 +1,23 @@
 export class Common {
     constructor() {
         this._parentElement = document.body;
+        // addhandlerAddToCartController(handler: (sku: number, size: number) => void) {
+        //   const thisObj = this;
+        //   this._parentElement.addEventListener('click', function (e) {
+        //     if (!e.target) return;
+        //     const a = <HTMLElement>e.target;
+        //     const target = <HTMLButtonElement>a.closest('.add-to-cart');
+        //     if (!target) return;
+        //     const skuEl = <HTMLElement>target.closest('[data-sku]');
+        //     if (!skuEl) return;
+        //     const sku = skuEl.dataset.sku;
+        //     if (!sku) throw 'Data Sku not set.';
+        //     handler(+sku, thisObj._getSize(+sku));
+        //     const qty = State.cart.find(item => item.sku === +sku)?.c_qty ?? 1;
+        //     target.textContent = `Added(${qty})`;
+        //     // target.disabled = true;
+        //   });
+        // }
     }
     render(data) {
         this._data = data;
@@ -12,23 +29,5 @@ export class Common {
     }
     _clear(parentElement = this._parentElement) {
         parentElement.innerHTML = '';
-    }
-    addhandlerAddToCartController(handler) {
-        this._parentElement.addEventListener('click', function (e) {
-            if (!e.target)
-                return;
-            const a = e.target;
-            const target = a.closest('button');
-            if (!target)
-                return;
-            const prodListEl = target.closest('[data-sku]');
-            if (!prodListEl)
-                return;
-            if (!prodListEl.dataset.sku)
-                throw 'Data Sku not set.';
-            handler(+prodListEl.dataset.sku);
-            target.textContent = 'Added+';
-            target.disabled = true;
-        });
     }
 }

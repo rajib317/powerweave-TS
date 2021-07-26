@@ -10,7 +10,7 @@ class Related extends Common {
             if (!e.target)
                 return;
             const target = e.target;
-            if (target.closest('button'))
+            if (!target.closest('button'))
                 return;
             const prodListEl = target.closest('.product-list--item');
             if (!prodListEl)
@@ -32,12 +32,12 @@ class Related extends Common {
             }
         }
         return itemsCopy
-            .map(item => `<div class="product-list--item" data-sku="${item.sku}">
-    <img src="${item.image[0].thumb}" alt="" />
-    <div class="title">${item.name}</div>
-    <div class="price">$${item.price}</div>
+            .map(item => `<div class="product-list--item" data-sku="${item.data.sku}">
+    <img src="${item.data.image[0].thumb}" alt="" />
+    <div class="title">${item.data.name}</div>
+    <div class="price">$${item.data.price}</div>
     <div class="overlay">
-      <button class="btn-fluid btn--md btn--primary">Add To Cart</button>
+      <button class="btn-fluid btn--md btn--primary">Buy Now</button>
     </div>
   </div>`)
             .join('');

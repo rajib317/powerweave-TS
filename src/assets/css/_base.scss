@@ -3,6 +3,7 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 *,
@@ -26,7 +27,7 @@ html {
   }
 }
 body {
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   line-height: 1.6;
   font-size: 1.6rem;
 }
@@ -36,4 +37,7 @@ a {
 .container {
   margin: 0 auto;
   max-width: 93%;
+}
+.text-bold {
+  font-weight: 900;
 }
