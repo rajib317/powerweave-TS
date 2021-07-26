@@ -1,37 +1,38 @@
-export const State = {
-    currentShow: {
-        data: {
-            sku: 1234,
-            name: 'Lorem Ipsum Shoes',
-            details: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente iusto
-    incidunt totam officia, nulla voluptate culpa voluptates delectus!
-    Error, sint. Vel culpa sequi ipsa temporibus repudiandae rerum pariatur
-    praesentium similique?`,
-            sizes: [6, 7, 8, 9, 10, 11],
-            price: 999.99,
-            basePrice: 999.99,
-            image: [
-                {
-                    main: 'src/assets/img/1.jpg',
-                    thumb: 'src/assets/img/thumb1.png',
-                },
-                {
-                    main: 'src/assets/img/2.jpg',
-                    thumb: 'src/assets/img/thumb2.png',
-                },
-                {
-                    main: 'src/assets/img/3.jpg',
-                    thumb: 'src/assets/img/thumb3.png',
-                },
-                {
-                    main: 'src/assets/img/4.jpg',
-                    thumb: 'src/assets/img/thumb4.png',
-                },
-            ],
-        },
-        c_qty: 1,
-        c_size: 0,
+export const DefaultShow = {
+    data: {
+        sku: 1234,
+        name: 'Lorem Ipsum Shoes',
+        details: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente iusto
+  incidunt totam officia, nulla voluptate culpa voluptates delectus!
+  Error, sint. Vel culpa sequi ipsa temporibus repudiandae rerum pariatur
+  praesentium similique?`,
+        sizes: [6, 7, 8, 9, 10, 11],
+        price: 999.99,
+        basePrice: 999.99,
+        image: [
+            {
+                main: 'src/assets/img/1.jpg',
+                thumb: 'src/assets/img/thumb1.png',
+            },
+            {
+                main: 'src/assets/img/2.jpg',
+                thumb: 'src/assets/img/thumb2.png',
+            },
+            {
+                main: 'src/assets/img/3.jpg',
+                thumb: 'src/assets/img/thumb3.png',
+            },
+            {
+                main: 'src/assets/img/4.jpg',
+                thumb: 'src/assets/img/thumb4.png',
+            },
+        ],
     },
+    c_qty: 1,
+    c_size: 0,
+};
+export const State = {
+    currentShow: DefaultShow,
     cart: [],
 };
 export const Related = [
@@ -196,4 +197,28 @@ export const addToCart = function (cart, size) {
  */
 const _cartOrganizer = function (item) {
     return (State.cart.find(cItem => cItem.data === item.data && cItem.c_size === item.c_size) || false);
+};
+export const changeQty = function (cartItem, changeBy) {
+    State.cart.forEach(item => {
+        if (item.data.sku === cartItem.data.sku &&
+            item.c_size === cartItem.c_size &&
+            item.c_qty >= 1)
+            item.c_qty += changeBy;
+    });
+};
+export const delCart = function (cart) {
+    const index = State.cart.indexOf(cart);
+    State.cart.splice(index, 1);
+};
+export const findBySKU = function (sku, target = [DefaultShow, ...Related]) {
+    const getItem = target.find(shoe => shoe.data.sku === sku);
+    if (!getItem)
+        throw 'Item not found';
+    return getItem;
+};
+export const findBySKUnSize = function (sku, size, target = [DefaultShow, ...Related]) {
+    const getItem = target.find(shoe => shoe.data.sku === sku && shoe.c_size === size);
+    if (!getItem)
+        throw 'Item not found';
+    return getItem;
 };

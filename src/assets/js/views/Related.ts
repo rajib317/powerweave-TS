@@ -10,9 +10,15 @@ class Related extends Common {
       const target = <HTMLElement>e.target;
       if (!target.closest('button')) return;
       const prodListEl = <HTMLElement>target.closest('.product-list--item');
-      if (!prodListEl) return;
-      if (!prodListEl.dataset.sku) throw 'Data Sku not set.';
-      handler(+prodListEl.dataset.sku);
+      if (!prodListEl || !prodListEl.dataset.sku) return;
+      const { sku } = prodListEl.dataset;
+      handler(+sku);
+      const scrollTo = ['header', 'nav'].reduce((total, El) => {
+        const a = <HTMLElement>document.querySelector(El)!;
+        total += a.offsetHeight;
+        return total;
+      }, 0);
+      window.scrollTo(0, scrollTo);
     });
   }
   //Making a shallow copy as we're mutilating items[] when SHUFFLE_MODE = true

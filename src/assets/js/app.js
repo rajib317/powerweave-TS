@@ -21,16 +21,12 @@ const changeImgController = function (src) {
     }
 };
 const changeShowcaseController = function (sku, size = 0) {
-    model.State.currentShow =
-        model.Related.find(shoe => shoe.data.sku === sku) ||
-            model.State.currentShow;
-    Showcase.render(model.State.currentShow);
-    const scrollTo = ['header', 'nav'].reduce((total, El) => {
-        const a = document.querySelector(El);
-        total += a.offsetHeight;
-        return total;
-    }, 0);
-    window.scrollTo(0, scrollTo);
+    const renderdata = model.findBySKU(sku);
+    if (!renderdata)
+        throw 'Product not found';
+    Showcase.render(renderdata);
+    if (size !== 0)
+        Showcase.renderSize(size);
 };
 const addToCartController = function (cart, size) {
     try {
@@ -43,6 +39,17 @@ const addToCartController = function (cart, size) {
     catch (err) {
         ErrorHandler(err);
     }
+};
+// == MiniCart== //
+const changeQtyController = function (sku, changeBy) {
+    const cartItem = model.findBySKU(sku, model.State.cart);
+    model.changeQty(cartItem, changeBy);
+    Cart.render(model.State.cart);
+};
+const removeFromCart = function (sku, size) {
+    const cartItem = model.findBySKUnSize(sku, size, model.State.cart);
+    model.delCart(cartItem);
+    Cart.render(model.State.cart);
 };
 const ErrorHandler = function (err) {
     alert(err);
@@ -57,6 +64,8 @@ const init = function () {
         RelatedList.addhandlerChangeShowcase(changeShowcaseController);
         Showcase.addhandlerAddToCartController(addToCartController);
         Cart.addhandlerChangeShowcase(changeShowcaseController);
+        Cart.addHandlerChangeQty(changeQtyController);
+        Cart.addHandlerRemoveFromCart(removeFromCart);
     }
     catch (err) {
         alert(err);

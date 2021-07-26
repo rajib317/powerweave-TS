@@ -13,11 +13,16 @@ class Related extends Common {
             if (!target.closest('button'))
                 return;
             const prodListEl = target.closest('.product-list--item');
-            if (!prodListEl)
+            if (!prodListEl || !prodListEl.dataset.sku)
                 return;
-            if (!prodListEl.dataset.sku)
-                throw 'Data Sku not set.';
-            handler(+prodListEl.dataset.sku);
+            const { sku } = prodListEl.dataset;
+            handler(+sku);
+            const scrollTo = ['header', 'nav'].reduce((total, El) => {
+                const a = document.querySelector(El);
+                total += a.offsetHeight;
+                return total;
+            }, 0);
+            window.scrollTo(0, scrollTo);
         });
     }
     //Making a shallow copy as we're mutilating items[] when SHUFFLE_MODE = true

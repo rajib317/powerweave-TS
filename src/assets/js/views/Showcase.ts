@@ -50,6 +50,14 @@ class Showcase extends Common {
     parentEl.dataset.sku = `${showcase.data.sku}`;
   }
 
+  renderSize(size: number) {
+    this._parentElement.querySelectorAll('.size-item').forEach(El => {
+      if (Number(El.textContent) === size) {
+        El.classList.add('active');
+      }
+    });
+  }
+
   getSizeSelected() {
     const sizeEl = this._parentElement.querySelectorAll('.size-item')!;
     return (

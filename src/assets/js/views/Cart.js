@@ -11,11 +11,40 @@ class CartClass extends Common {
             const cartItemEL = target.closest('.mini-cart--item');
             if (!cartItemEL)
                 return;
+            if (target.closest('.qty-down'))
+                return;
+            if (target.closest('.qty-up'))
+                return;
             const cartItem = cartItemEL.dataset['sku'];
             const size = cartItemEL.dataset['size'];
             handler(+cartItem, +size);
-            // const cartItem = <Shoe>this.dataset['item'];
-            // handler(cartItem);
+        });
+    }
+    addHandlerChangeQty(handler) {
+        this._parentElement.addEventListener('click', function (e) {
+            const target = e.target;
+            const cartItemEL = target.classList.contains('btn');
+            if (!cartItemEL)
+                return;
+            const skuEl = target.closest('.mini-cart--item');
+            const { sku } = skuEl.dataset;
+            const { by } = target.dataset;
+            if (!sku || !by)
+                return;
+            handler(+sku, +by);
+        });
+    }
+    addHandlerRemoveFromCart(handler) {
+        this._parentElement.addEventListener('click', function (e) {
+            const target = e.target;
+            const delBtn = target.classList.contains('del--btn');
+            if (!delBtn)
+                return;
+            const skuEl = target.closest('.mini-cart--item');
+            const { sku, size } = skuEl.dataset;
+            if (!sku || !size)
+                return;
+            handler(+sku, +size);
         });
     }
     _generateMarkup() {
@@ -30,27 +59,23 @@ class CartClass extends Common {
         </div>
     `;
     }
-    test(handler) {
-        handler();
-    }
-    test1() {
-        console.log('erer');
-    }
     _generateCartItems(items) {
         let total = 0;
         return (items
             .map(item => {
             total += item.data.price * item.c_qty;
+            const { c_qty } = item;
+            console.log(c_qty);
             return `<div class="mini-cart--item" data-sku="${item.data.sku}" data-size="${item.c_size}" >
           <div class="thumb">
             <img src="${item.data.image[0].thumb}" alt="" />
           </div>
           <div class="name">${item.data.name}<br /><span class="text-xm">Size: ${item.c_size}</span></div>
           <div class="qty-container">
-            <div class="qty">${item.c_qty}</div>
+            <div class="qty">${c_qty}</div>
             <div class="qty-btns">
-              <button class="qty-up btn btn--primary-alt btn--xm">+</button>
-              <button class="qty-down btn btn--primary-alt btn--xm">-</button>
+              <button data-by="1" class="qty-up btn btn--primary-alt btn--xm">+</button>
+              <button data-by="-1" ${c_qty <= 1 ? 'disabled' : ''} class="qty-down btn btn--primary-alt btn--xm">-</button>
             </div>
           </div>
           <div class="price">$${item.data.price}</div>
