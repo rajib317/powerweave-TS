@@ -6,7 +6,7 @@ import { Shoe } from './model.d';
 
 const changePriceController = function (size: number, index: number) {
   try {
-    Showcase.changePrice(size, index);
+    Showcase.changePrice(index);
     model.setSize(size);
     Showcase.resetBtnText('Add to cart');
   } catch (err) {

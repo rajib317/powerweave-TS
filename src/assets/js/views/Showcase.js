@@ -35,9 +35,7 @@ class Showcase extends Common {
             handler(target.dataset['main']);
         });
     }
-    changePrice(size, index) {
-        if (size % 1 !== 0)
-            throw 'Size is not an integer.';
+    changePrice(index) {
         const { basePrice } = State.currentShow.data;
         State.currentShow.data.price = basePrice + index * PRICE_INCRESE_BY;
         const PriceEl = this._parentElement.querySelector('.price span');
@@ -100,7 +98,8 @@ class Showcase extends Common {
         return `
     <section class="product-showcase--thumbs-container">
     ${showcase.data.image
-            .map(img => `<img data-main="${img.main}" class="thumb" src="${img.thumb}" alt="" />`)
+            .map(img => `<div class="thumb-item">
+          <img data-main="${img.main}" class="thumb" src="${img.thumb}" alt="" /></div>`)
             .join('')}      
     </section>
     <section class="product-showcase--product-image">

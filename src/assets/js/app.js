@@ -4,7 +4,7 @@ import RelatedList from './views/Related.js';
 import Cart from './views/Cart.js';
 const changePriceController = function (size, index) {
     try {
-        Showcase.changePrice(size, index);
+        Showcase.changePrice(index);
         model.setSize(size);
         Showcase.resetBtnText('Add to cart');
     }
