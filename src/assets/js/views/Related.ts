@@ -35,8 +35,10 @@ class Related extends Common {
     return itemsCopy
       .map(
         item => `<div class="product-list--item" data-sku="${item.data.sku}">
-    <img src="${item.data.image[0].thumb}" alt="" />
-    <div class="title">${item.data.name}</div>
+    <div class="img-container"><img src="${
+      item.data.image[0].thumb
+    }" alt="" /></div>
+    <div class="title">${item.data.name.substring(0, 40)}</div>
     <div class="price">$${item.data.price}</div>
     <div class="overlay">
       <button class="btn-fluid btn--md btn--primary">Buy Now</button>
