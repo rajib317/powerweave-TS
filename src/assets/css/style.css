@@ -329,9 +329,6 @@ header .cart-container {
   display: -ms-flexbox;
   display: flex;
   border-bottom: solid 1px #d8d8d8;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
   gap: 20px;
   padding: 20px 0 60px 0;
 }

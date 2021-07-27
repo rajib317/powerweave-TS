@@ -1,7 +1,6 @@
 .product-showcase {
   display: flex;
   border-bottom: solid 1px $color-grey-light1;
-  align-items: flex-start;
   @media only screen and (max-width: $bp-small) {
     flex-flow: column;
   }
