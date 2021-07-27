@@ -28,7 +28,7 @@ class Showcase extends Common {
             const target = e.target;
             if (!target)
                 return;
-            if (!target.closest('.thumb'))
+            if (!target.closest('.thumb-item'))
                 return;
             if (!target.dataset['main'])
                 throw 'data-main attribute not set.';

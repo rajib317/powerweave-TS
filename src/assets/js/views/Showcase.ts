@@ -25,7 +25,7 @@ class Showcase extends Common {
     this._parentElement.addEventListener('click', function (e) {
       const target = <HTMLImageElement>e.target;
       if (!target) return;
-      if (!target.closest('.thumb')) return;
+      if (!target.closest('.thumb-item')) return;
       if (!target.dataset['main']) throw 'data-main attribute not set.';
       handler(target.dataset['main']);
     });
